@@ -7,49 +7,8 @@ $database =new database();
 $db=$database->connect();
 $new_blog= new blog($db);
 
-if(isset($_POST['write_blog'])){
-    $target_file="../images/upload/";
-    if(!empty($_FILES['main_image']['name'])){
-        $main_image=$_FILES['main_image']['name'];
-        move_uploaded_file($_FILES['main_image']['tmp_name'],$target_file.$main_image);
-    }
-    else{
-        $main_image="";
-    }
 
-    if(!empty($_FILES['alt_image']['name'])){
-        $alt_image=$_FILES['alt_image']['name'];
-        move_uploaded_file($_FILES['alt_image']['tmp_name'],$target_file.$alt_image);
-    }
-    else{
-        $alt_image="";
-    }
-    $opt=empty($_POST['opt_place'])?0:$_POST['opt_place'];
 
-        $new_blog->n_category_id = $_POST['select_category'];
-        $new_blog->v_post_title = $_POST['title'];
-        $new_blog->v_post_meta_title = $_POST['meta_title'];
-        $new_blog->v_post_path = $_POST['blog_path'];
-        $new_blog->v_post_summary = $_POST['blog_summary'];
-        $new_blog->v_post_content = $_POST['blog_content'];
-        $new_blog->v_main_image_url = $main_image;
-        $new_blog->v_alt_image_url = $alt_image;
-        $new_blog->n_blog_post_views = 0;
-        $new_blog->f_post_status = 1;
-        $new_blog->n_home_page_place = $opt;
-        $new_blog->d_date_created = date("Y-m-d",time());
-        $new_blog->d_time_created = date("h:i:s",time());
-       
-       if(($new_blog->create())){
-        $flag="Write Successfully";
-       }
-
-       //write a blog tag
-        $new_tag= new tag($db);
-        $new_tag->n_blog_post_id=$new_tag->last_id();
-        $new_tag->v_tag=$_POST['blog_tags'];
-        $new_tag->create();
-}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -134,11 +93,11 @@ if(isset($_POST['write_blog'])){
                                         ?>
                                         <div class="form-group">
                                             <label>Blog Categories</label>
-                                            <select name="select_category" class="form-control">
+                                            <select name="select_category"  class="form-control">
                                                 <?php  
                                                 while($rs = $result->fetch()){
                                                 ?>
-                                                <option >
+                                                <option value="<?php  echo $rs['n_category_id'] ?>">
                                                     <?php echo $rs['v_category_title'] ?>
                                                 </option>
                                                 <?php } ?>
