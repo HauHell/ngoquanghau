@@ -2,7 +2,7 @@
 include "includes/database.php";
 include "includes/categories.php";
 include "includes/blogs.php";
-include "includes/tags.php";
+
 
 $database =new database();
 $db=$database->connect();
