@@ -2,6 +2,7 @@
 include "includes/database.php";
 include "includes/categories.php";
 include "includes/blogs.php";
+include "includes/tags.php";
 
 $database =new database();
 $db=$database->connect();
@@ -40,7 +41,7 @@ if(isset($_POST['write_blog'])){
         $new_blog->d_date_created = date("Y-m-d",time());
         $new_blog->d_time_created = date("h:i:s",time());
        
-       if(null !== ($new_blog->create())){
+       if(($new_blog->create()){
         $flag="Write Successfully";
        }
 

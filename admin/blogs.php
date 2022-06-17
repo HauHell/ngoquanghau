@@ -48,6 +48,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $flag="Update Successfully!";
         }
     }
+
+}
     if(isset($_POST['delete'])){
         $new_tag = new tag($db);
         $new_tag->n_blog_post_id = $_POST['blog_id'];
@@ -56,7 +58,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($_POST['main_image']!=""){
             unlink("../images/upload/".$_POST['main_image']);
         }
-     
+        
 
         if($_POST['alt_image']!=""){
             unlink("../images/upload/".$_POST['alt_image']);
@@ -67,7 +69,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($new_blog->delete()){
             $flag = "Delete successful!";
         }        
-    }
+    
 }
 
 //write a blog
