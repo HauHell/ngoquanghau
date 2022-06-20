@@ -96,6 +96,29 @@ class tag{
 		printf("Error: %s. \n", $stmt->error);
 		return false;
 	}
+	public function updatetag(){
+		//Create query
+		$query = "UPDATE $this->table
+		          SET v_tag = :tag		          	  
+		          WHERE 
+		          	  n_blog_post_id = :get_id";
+		//Prepare statement
+		$stmt = $this->conn->prepare($query);
+		//Clean data
+		$this->v_tag = htmlspecialchars(strip_tags($this->v_tag));
+	
+		//Bind data
+		$stmt->bindParam(':get_id',$this->n_blog_post_id);
+		$stmt->bindParam(':tag',$this->v_tag);
+		
+		//Execute query
+		if($stmt->execute()){
+			return true;
+		}
+		//Print error if something goes wrong
+		printf("Error: %s. \n", $stmt->error);
+		return false;
+	}
 
 	//Delete category
 	public function delete(){

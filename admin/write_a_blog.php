@@ -3,6 +3,7 @@ include "includes/database.php";
 include "includes/categories.php";
 include "includes/blogs.php";
 
+
 $database =new database();
 $db=$database->connect();
 $new_blog= new blog($db);

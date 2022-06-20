@@ -9,6 +9,8 @@ $new_blog = new blog($db);
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     if(isset($_POST['update'])){
+       
+
         // Xu ly main_image
         $target_file = "../images/upload/";
         if(!empty($_FILES['main_image']['name'])){
@@ -46,6 +48,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         //check update
         if($new_blog->update()){
         $flag="Update Successfully!";
+        $new_tag =new tag($db);
+        $new_tag->n_blog_post_id=$_POST['blog_id'];
+        $new_tag->v_tag=$_POST['blog_tags'];
+        $new_tag->updatetag();
+       
         }
     }
 
@@ -58,12 +65,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         if($_POST['main_image']!=""){
             unlink("../images/upload/".$_POST['main_image']);
         }
+
         
 
         if($_POST['alt_image']!=""){
             unlink("../images/upload/".$_POST['alt_image']);
         }
-
 
         $new_blog->n_blog_post_id = $_POST['blog_id'];
         if($new_blog->delete()){
