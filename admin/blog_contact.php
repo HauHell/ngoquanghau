@@ -43,7 +43,7 @@ $new_contact = new contact($db);
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
-<body>
+<body onload="loadweb()">
     <div id="wrapper">
         <?php  
             include "header.php";
@@ -178,5 +178,10 @@ $new_contact = new contact($db);
 
 
 </body>
+<script type="text/javascript">
+ function loadweb() {
+        var home= document.getElementById('5');
+        home.classList.add('active-menu');  }
+    </script>
 
 </html>

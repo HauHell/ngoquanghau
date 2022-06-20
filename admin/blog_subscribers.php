@@ -43,7 +43,7 @@ $new_subscriber = new subscribers($db);
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
-<body>
+<body onload="loadweb()">
     <div id="wrapper">
         <?php  
             include "header.php";
@@ -176,5 +176,10 @@ $new_subscriber = new subscribers($db);
 
 
 </body>
+<script type="text/javascript">
+ function loadweb() {
+        var home= document.getElementById('6');
+        home.classList.add('active-menu');  }
+    </script>
 
 </html>

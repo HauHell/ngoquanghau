@@ -32,7 +32,7 @@ $new_blog= new blog($db);
     <link rel="stylesheet"  href="summernote/summernote.min.css">
 </head>
 
-<body>
+<body onload="loadweb()">
     <div id="wrapper">
         <?php  
             include "header.php";
@@ -207,5 +207,10 @@ $new_blog= new blog($db);
         });
     </script>
 </body>
+<script type="text/javascript">
+ function loadweb() {
+        var home= document.getElementById('4');
+        home.classList.add('active-menu');  }
+    </script>
 
 </html>
