@@ -23,7 +23,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $new_user->v_fullname = $_POST['name'];
         $new_user->v_email = $_POST['email'];
         $new_user->v_username = $_POST['username'];
-        $new_user->v_password = md5($_POST['password']);
+        if($_POST['password']!=$_POST['old_password']){
+            $new_user->v_password = md5($_POST['password']);
+        }
+        else{
+             $new_user->v_password=$_POST['old_password'];
+        }
         $new_user->v_phone = $_POST['phone'];
         $new_user->v_image = $image_name;
         $new_user->v_message = $_POST['about'];
@@ -128,6 +133,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                         <div class="form-group">
                                             <label>Password</label>
                                              <input name="password" type="password" 
+                                            value="<?php echo $row_user['v_password'] ?>"
+                                            class="form-control" placeholder="Enter password">
+                                        </div>
+                                          <div class="form-group">
+                                           
+                                             <input name="old_password" type="hidden" 
                                             value="<?php echo $row_user['v_password'] ?>"
                                             class="form-control" placeholder="Enter password">
                                         </div>
